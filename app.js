@@ -9,7 +9,7 @@ app.use(expressSanitizer())
 app.set("view engine", "ejs")
 app.use(express.static("public"))
 app.use(methodOverride("_method"))
-mongoose.connect("mongodb://localhost/restful_blog_app")
+mongoose.connect("mongodb+srv://bahubalicoders:fvaC0TiK7zA6eBEw@cluster0.aiclq.mongodb.net/<dbname>?retryWrites=true&w=majority/restful_blog_app")
 var blogschema = new mongoose.Schema({
     title: String,
     image: String,
@@ -52,7 +52,7 @@ app.post("/blogs", function(req,res){
 app.get("/blogs/:id", function(req,res){
     Blog.findById(req.params.id, function(err, result){
         if(err)
-            res.render("/blogs")
+            res.redirect("/blogs")
         else
             res.render("show", {blog: result})
     })
